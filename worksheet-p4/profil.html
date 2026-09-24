@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+  KERANGKA AWAL — Halaman Profil Saya
+  PABW 2026/2027 · Pertemuan 3
+
+  Cara pakai:
+  1. Salin berkas ini, ganti nama menjadi profil.html
+  2. Ganti setiap tulisan TODO dengan isi milik Anda SENDIRI
+  3. Simpan, lalu buka di peramban (F5 untuk memuat ulang)
+  4. Kerjakan berurutan mengikuti Lembar B, C, D, dan E pada worksheet
+
+  Jangan menghapus komentar TODO sebelum bagian itu Anda kerjakan —
+  komentar itu adalah daftar periksa Anda sendiri.
+-->
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Koleksi Album Musik</title>
+
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="layout.css">
+  <link rel="stylesheet" href="komponen.css">
+  <link rel="stylesheet" href="tema.css">
+  
+</head>
+<body>
+
+  <header>
+    <h1>Koleksi Album Favorit Saya dari yang Paling Bagus</h1>
+    <nav aria-label="Navigasi utama">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#daftar-album">Daftar Album</a></li>
+        <li><a href="#tambah-album">Tambah Album</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="daftar-album">
+      <h2>Daftar Album Favorit</h2>
+
+      <table>
+        <caption>Album musik favorit saya</caption>
+        <thead>
+          <tr>
+            <th scope="col">Judul Album</th>
+            <th scope="col">Penyanyi/Band</th>
+            <th scope="col">Tahun Rilis</th>
+            <th scope="col">Genre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Adrenaline</th>
+            <td>Deftones</td>
+            <td><time datetime="1995-10-03">3 Oktober 1995</time></td>
+            <td>Nu Metal</td>
+          </tr>
+          <tr>
+            <th scope="row">Living Things</th>
+            <td>Linkin Park</td>
+            <td><time datetime="2012-06-20">20 Juni 2012</time></td>
+            <td>Alternative Rock</td>
+          </tr>
+          <tr>
+            <th scope="row">Significant Other</th>
+            <td>Limp Bizkit</td>
+            <td><time datetime="1999-06-22">22 Juni 1999</time></td>
+            <td>Nu Metal</td>
+          </tr>
+          <tr>
+            <th scope="row">Harmonium</th>
+            <td>Vanessa Carlton</td>
+            <td><time datetime="2004-11-09">9 November 2004</time></td>
+            <td>Pop Rock</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <figure>
+        <img src="koleksi-album.webp"
+             alt="Rak berisi kumpulan album musik favorit saya yang tersusun berjajar"
+             width="640" height="360" loading="lazy">
+        <figcaption>Sebagian koleksi album musik favorit saya</figcaption>
+      </figure>
+    </section>
+
+    <section id="tambah-album">
+      <h2>Tambah Album Baru</h2>
+      <form action="/simpan" method="post">
+        <p>
+          <label for="judul-album">Judul album</label>
+          <input type="text" id="judul-album" name="judul-album" required>
+        </p>
+        <p>
+          <label for="penyanyi-band">Penyanyi/Band</label>
+          <input type="text" id="penyanyi-band" name="penyanyi-band" required>
+        </p>
+        <p>
+          <label for="tahun-rilis">Tahun rilis</label>
+          <input type="number" id="tahun-rilis" name="tahun-rilis" min="1900" max="2026" required>
+        </p>
+        <button type="submit">Simpan</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>Erlano Putra Kusuma Handoyo, 25523202, 2026</p>
+  </footer>
+
+</body>
+</html>
