@@ -1,11 +1,11 @@
-const profil = {
+export const profil = {
   nama: "Erlano Putra Kusuma Handoyo",
   peran: "Mahasiswa Informatika",
   keahlian: ["HTML", "CSS", "JavaScript"],
   jumlahAlbum: 4
 };
 
-const daftarAlbum = [
+export const daftarAlbum = [
   { judul: "Adrenaline", band: "Deftones", tahun: 1995, genre: "Nu Metal", favorit: true },
   { judul: "Living Things", band: "Linkin Park", tahun: 2012, genre: "Alternative Rock", favorit: true },
   { judul: "Significant Other", band: "Limp Bizkit", tahun: 1999, genre: "Nu Metal", favorit: true },
