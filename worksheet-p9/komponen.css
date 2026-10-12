@@ -146,6 +146,37 @@ input:user-invalid {
   display: block;
 }
 
+
+
+input[aria-invalid="true"] {
+  border-color: var(--color-danger);
+  border-width: 2px;
+}
+
+.form-kolom:has(input[aria-invalid="true"]) .pesan-galat {
+  display: block;
+}
+
+.filter-baris {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.filter-baris button {
+  background: var(--color-surface);
+  color: var(--color-fg);
+  border: 1px solid var(--color-border);
+}
+
+.filter-baris button.aktif {
+  background: var(--color-primary);
+  color: var(--color-surface);
+  border-color: var(--color-primary);
+}
+
+
+
 .pengalih-tema {
   position: absolute;
   opacity: 0;

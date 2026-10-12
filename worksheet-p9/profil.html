@@ -49,7 +49,7 @@
     <main class="isi">
       <section id="tambah-album" class="sisi">
         <h2>Tambah Album Baru</h2>
-        <form action="/simpan" method="post">
+        <form action="/simpan" method="post" id="form-tambah-album">
           <div class="form-kolom">
             <label for="judul-album">Judul album</label>
             <input type="text" id="judul-album" name="judul-album" required>
@@ -62,7 +62,7 @@
           </div>
           <div class="form-kolom">
             <label for="tahun-rilis">Tahun rilis</label>
-            <input type="number" id="tahun-rilis" name="tahun-rilis" min="1900" max="2026" required>
+            <input type="number" id="tahun-rilis" name="tahun-rilis">
             <span class="pesan-galat">Tahun rilis tidak valid</span>
           </div>
           <button type="submit">Simpan</button>
@@ -71,6 +71,16 @@
 
       <section id="daftar-album" class="utama">
         <h2>Daftar Album Favorit</h2>
+
+        <div class="filter-baris" id="filter-genre">
+        <button type="button" data-genre="semua" class="aktif">Semua</button>
+        <button type="button" data-genre="Nu Metal">Nu Metal</button>
+        <button type="button" data-genre="Alternative Rock">Alternative Rock</button>
+        <button type="button" data-genre="Pop Rock">Pop Rock</button>
+      </div>
+
+      <p id="pesan-kosong" hidden>Tidak ada album yang cocok dengan filter ini.</p>
+
 
         <div class="table-wrap">
         <table>
@@ -83,7 +93,7 @@
               <th scope="col">Genre</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="daftar-album-tbody">
             <tr>
               <th scope="row">Adrenaline</th>
               <td>Deftones</td>
