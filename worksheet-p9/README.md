@@ -60,6 +60,20 @@ Dua fungsi murni
 - formatKeahlian(daftar)
 
 ## Pertemuan 9 — Memasang Data ke Halaman dan Menanggapi Pengguna
+Elemen DOM yang diambil
+- daftarEl - wadah tabel (#daftar-album-tbody)
+- filterEl - wadah tombol filter (#filter-genre)
+- pesanKosongEl - elemen pesan saat data kosong (#pesan-kosong)
+- formEl - form tambah album (#form-tambah-album)
+
+Fungsi manipulasi DOM & render
+- buatBarisAlbum(album) - membuat elemen tr baru menggunakan createElement
+- render(daftar) - mengosongkan wadah, menangani status kosong, dan merender ulang
+- tandaiTombolAktif(tombol) - mengelola kelas aktif pada tombol filter
+
+Interaktivitas & Validasi
+- Event Delegation - satu pendengar klik di induk (#filter-genre) untuk menyaring album
+- Validasi Form - preventDefault, pembersihan spasi (trim), aria-invalid, dan penanganan galat per kolom
 
 
 
@@ -71,3 +85,4 @@ kemudian saya sesuaikan lagi.
 p5 - Membantu dan memandu dalam mengerjakan lembar kerja, serta sedikit perbaikan dari worksheet sebelumnya.
 p6 - 
 p8 - Membantu dalam mengerjakan worksheet, seperti apa yang harus dicek dan bagaimana cara mengeceknya
+P9 - Membantu dalam menyusun fungsi event delegation closest "button"
