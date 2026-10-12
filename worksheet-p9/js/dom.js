@@ -19,7 +19,7 @@ function buatBarisAlbum(album) {
   th.scope = "row";
   th.textContent = album.judul;
 
-  
+
   const tdBand = document.createElement("td");
   tdBand.textContent = album.band;
 
@@ -32,3 +32,21 @@ function buatBarisAlbum(album) {
   tr.append(th, tdBand, tdTahun, tdGenre);
   return tr;
 }
+
+
+
+
+function tandaiTombolAktif(tombolAktif) { 
+    filterEl.querySelectorAll("button").forEach((tombol) => {
+        tombol.classList.toggle("aktif", tombol === tombolAktif);
+    });
+}
+
+filterEl.addEventListener("click", (event) => {
+  const tombol = event.target.closest("button");
+  if (!tombol) return;
+  const genre = tombol.dataset.genre;
+  const terpilih = genre === "semua" ? daftarAlbum : daftarAlbum.filter((album) => album.genre === genre);
+  render(terpilih);
+  tandaiTombolAktif(tombol);
+});
