@@ -36,6 +36,31 @@ function buatBarisAlbum(album) {
 
 
 
+
+function render(daftar) {
+  daftarEl.textContent = "";
+  
+  if (daftar.length === 0) { 
+    pesanKosongEl.hidden = false;
+    return;
+  }
+  
+  pesanKosongEl.hidden = true;
+  
+  const fragment = document.createDocumentFragment();
+  daftar.forEach((album) => fragment.append(buatBarisAlbum(album)));
+  daftarEl.append(fragment);
+}
+
+render(daftarAlbum);
+
+
+
+
+
+
+
+
 function tandaiTombolAktif(tombolAktif) { 
     filterEl.querySelectorAll("button").forEach((tombol) => {
         tombol.classList.toggle("aktif", tombol === tombolAktif);
@@ -49,4 +74,75 @@ filterEl.addEventListener("click", (event) => {
   const terpilih = genre === "semua" ? daftarAlbum : daftarAlbum.filter((album) => album.genre === genre);
   render(terpilih);
   tandaiTombolAktif(tombol);
+});
+
+
+
+
+const inputJudul = document.querySelector("#judul-album");
+const inputBand = document.querySelector("#penyanyi-band");
+const inputTahun = document.querySelector("#tahun-rilis");
+const tombolSimpan = formEl.querySelector("button[type=submit]");
+
+function tandaiGalat(input, pesan) {
+  input.setAttribute("aria-invalid", "true");
+  const pesanEl = input.closest(".form-kolom")?.querySelector(".pesan-galat");
+  if (pesanEl) pesanEl.textContent = pesan;
+}
+
+
+function bersihkanGalat(input) {
+  input.removeAttribute("aria-invalid");
+}
+
+
+
+function periksaForm() {
+  let sah = true;
+
+  if (inputJudul.value.trim() === "") {
+    tandaiGalat(inputJudul, "Judul album wajib diisi.");
+    sah = false;
+  } else {
+    bersihkanGalat(inputJudul);
+  }
+
+
+
+  if (inputBand.value.trim() === "") {
+    tandaiGalat(inputBand, "Nama penyanyi/band wajib diisi.");
+    sah = false;
+  } else {
+    bersihkanGalat(inputBand);
+  }
+
+  const tahun = Number(inputTahun.value);
+  if (inputTahun.value.trim() === "" || tahun < 1900 || tahun > 2026) {
+    tandaiGalat(inputTahun, "Isi tahun antara 1900 dan 2026.");
+    sah = false;
+  } else {
+    bersihkanGalat(inputTahun);
+  }
+
+  tombolSimpan.disabled = !sah;
+  return sah;
+}
+
+[inputJudul, inputBand, inputTahun].forEach((input) => {
+  input.addEventListener("input", periksaForm);
+});
+
+formEl.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  if (!periksaForm()) {
+    const kolomBermasalah = [inputJudul, inputBand, inputTahun].find(
+      (input) => input.getAttribute("aria-invalid") === "true"
+    );
+    kolomBermasalah?.focus();
+    return;
+  }
+
+  formEl.reset();
+  tombolSimpan.disabled = false;
 });

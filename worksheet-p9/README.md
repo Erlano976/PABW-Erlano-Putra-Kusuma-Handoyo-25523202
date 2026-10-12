@@ -59,6 +59,9 @@ Dua fungsi murni
 - buatPerkenalan({ nama, peran })
 - formatKeahlian(daftar)
 
+## Pertemuan 9 — Memasang Data ke Halaman dan Menanggapi Pengguna
+
+
 
 ## Catatan penggunaan AI
 

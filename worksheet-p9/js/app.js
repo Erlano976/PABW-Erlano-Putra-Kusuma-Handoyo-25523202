@@ -12,11 +12,11 @@ export const daftarAlbum = [
   { judul: "Harmonium", band: "Vanessa Carlton", tahun: 2004, genre: "Pop Rock", favorit: false }
 ];
 
-function buatPerkenalan({ nama, peran }) {
+export function buatPerkenalan({ nama, peran }) {
   return `${nama} - ${peran}`;
 }
 
-const formatKeahlian = (daftar) => daftar.join(" · ");
+export const formatKeahlian = (daftar) => daftar.join(" · ");
 
 console.log(buatPerkenalan(profil));
 console.log(formatKeahlian(profil.keahlian));
