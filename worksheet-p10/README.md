@@ -76,6 +76,17 @@ Interaktivitas & Validasi
 - Validasi Form - preventDefault, pembersihan spasi (trim), aria-invalid, dan penanganan galat per kolom
 
 
+## Pertemuan 10 — JavaScript Asinkron: fetch, Promise, dan JSON
+- data/album.json - data album, JSON murni (id, judul, band, tahun, genre, favorit)
+- js/api.js - satu-satunya berkas yang memakai fetch; ALAMAT ditulis di satu tempat; mengekspor ambilProyek()
+- js/app.js - perakit: muat() memanggil ambilProyek(), pasangFilter(), render()
+- js/dom.js - seluruh sentuhan ke halaman: render(), aturMemuat(), tampilkanGalat(), pasangFilter()
+
+Alur data & Penanganan Galat
+- respons.ok diperiksa sebelum badan balasan dibaca; satu try/catch di api.js dan satu di app.js
+- respons.json() mengubah teks menjadi nilai; JSON.stringify mengubah nilai menjadi teks
+- Empat keadaan antarmuka: memuat, berhasil, gagal, dan kosong
+
 
 ## Catatan penggunaan AI
 
