@@ -1,3 +1,6 @@
+import { ambilAlbum } from './api.js';
+import { render, aturMemuat, tampilkanGalat, pasangFilter } from './dom.js';
+
 export const profil = {
   nama: "Erlano Putra Kusuma Handoyo",
   peran: "Mahasiswa Informatika",
@@ -21,20 +24,21 @@ export const formatKeahlian = (daftar) => daftar.join(" · ");
 console.log(buatPerkenalan(profil));
 console.log(formatKeahlian(profil.keahlian));
 
-console.table(profil.keahlian);
-console.table(daftarAlbum);
+async function muat() {
+  aturMemuat(true); 
+  try {
+    const daftar = await ambilAlbum();
+    pasangFilter(daftar); 
+    render(daftar); 
+  } catch (galat) {
+    tampilkanGalat("Data album gagal dimuat. Periksa koneksi, lalu muat ulang halaman.");
+    console.error(galat.message); 
+  } finally {
+    aturMemuat(false);
+  }
+}
 
-const albumFavorit = daftarAlbum.filter((album) => album.favorit);
-console.table(albumFavorit);
-
-const albumDicari = daftarAlbum.find((album) => album.judul === "Adrenaline");
-console.log(albumDicari);
-
-const judulAlbumList = daftarAlbum.map((album) => album.judul);
-console.log(judulAlbumList);
-
-
-
+muat();
 
 
 

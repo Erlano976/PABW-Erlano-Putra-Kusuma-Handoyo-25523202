@@ -1,5 +1,5 @@
 // js/api.js
-const ALAMAT = 'data/proyek.json';
+const ALAMAT = "data/album.json";
 
 export async function ambilAlbum() {
     try {
@@ -8,9 +8,15 @@ export async function ambilAlbum() {
             throw new Error('status'+ respons .status)
         }   
         const data = await respons .json();
+        console.log("data");     
+        console.log(data[0]?.judul);
+
+        const badan = JSON.stringify({ judul: "Judul contoh", genre: "Nu Metal" });
+        console.log(typeof badan);
+        
         return data;
     } catch (galat) {
-        console.error('gagal memuat', galat .messege);
+        console.error("gagal memuat album", galat .message);
         throw galat;
     }
-} 
+}

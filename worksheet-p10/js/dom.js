@@ -2,12 +2,13 @@ const daftarEl = document.querySelector("#daftar-album-tbody");
 const filterEl = document.querySelector("#filter-genre");
 const pesanKosongEl = document.querySelector("#pesan-kosong");
 const formEl = document.querySelector("#form-tambah-album");
+const muatEl = document.querySelector("#muat");
 
 console.log("daftarEl", daftarEl);
 console.log("filterEl", filterEl);
 console.log("pesanKosongEl", pesanKosongEl);
 console.log("formEl", formEl);
-
+console.log("formEl", formEl);
 
 
 function buatBarisAlbum(album) {
@@ -31,10 +32,11 @@ function buatBarisAlbum(album) {
   return tr;
 }
 
-function render(daftar) {
+export function render(daftar) {
   daftarEl.textContent = "";
   
   if (daftar.length === 0) { 
+    pesanKosongEl.textContent = "Belum ada album.";
     pesanKosongEl.hidden = false;
     return;
   }
@@ -46,7 +48,17 @@ function render(daftar) {
   daftarEl.append(fragment);
 }
 
-render(daftarAlbum);
+export function aturMemuat(aktif) {
+  muatEl.hidden = !aktif;
+}
+
+export function tampilkanGalat(pesan) {
+  daftarEl.textContent = "";
+  pesanKosongEl.textContent = pesan;
+  pesanKosongEl.hidden = false;
+}
+
+
 
 
 function tandaiTombolAktif(tombolAktif) { 
@@ -55,14 +67,17 @@ function tandaiTombolAktif(tombolAktif) {
     });
 }
 
-filterEl.addEventListener("click", (event) => {
-  const tombol = event.target.closest("button");
-  if (!tombol) return;
-  const genre = tombol.dataset.genre;
-  const terpilih = genre === "semua" ? daftarAlbum : daftarAlbum.filter((album) => album.genre === genre);
-  render(terpilih);
-  tandaiTombolAktif(tombol);
-});
+export function pasangFilter(daftar) {
+  filterEl.addEventListener("click", (event) => {
+    const tombol = event.target.closest("button");
+    if (!tombol) return;
+
+    const genre = tombol.dataset.genre;
+    const terpilih = genre === "semua" ? daftar : daftar.filter((album) => album.genre === genre);
+    render(terpilih);
+    tandaiTombolAktif(tombol);
+  });
+}
 
 const inputJudul = document.querySelector("#judul-album");
 const inputBand = document.querySelector("#penyanyi-band");
