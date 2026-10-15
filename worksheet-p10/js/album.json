@@ -1,0 +1,7 @@
+[
+  { "id": 1, "judul": "Adrenaline", "band": "Deftones", "tahun": 1995, "genre": "Nu Metal", "Favorit": true },
+  { "id": 2, "judul": "Living Things", "Band": "LinkinPark", "tahun": 2012, "genre": "Alternatife Rock", "Favorit": true },
+  { "id": 3, "judul": "Significant Other", "Band": "Limp Bizkit", "tahun": 1999, "genre": "Nu Metal", "Favorit": true },
+  { "id": 4, "judul": "Harmoinum", "Band": "Vanessa Carlton", "Tahun": 2004, "enre": "Pop Rock", "Favorit": false }
+]
+ 
