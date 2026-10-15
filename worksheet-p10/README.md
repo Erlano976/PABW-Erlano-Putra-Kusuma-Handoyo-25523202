@@ -97,3 +97,4 @@ p5 - Membantu dan memandu dalam mengerjakan lembar kerja, serta sedikit perbaika
 p6 - 
 p8 - Membantu dalam mengerjakan worksheet, seperti apa yang harus dicek dan bagaimana cara mengeceknya
 P9 - Membantu dalam menyusun fungsi event delegation closest "button"
+P10 - Membantu memahami alur fetch dan penanganan galat
