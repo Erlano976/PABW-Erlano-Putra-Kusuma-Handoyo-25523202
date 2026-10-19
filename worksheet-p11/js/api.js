@@ -1,5 +1,5 @@
 // js/api.js
-const ALAMAT = "https://raw.githubusercontent.com/Erlano976/PABW-Erlano-Putra-Kusuma-Handoyo-25523202/refs/heads/main/worksheet-p10/data/album.json";
+const ALAMAT = "https://raw.githubusercontent.com/Erlano976/PABW-Erlano-Putra-Kusuma-Handoyo-25523202/refs/heads/main/worksheet-p11/data/album.json";
 
 export async function ambilAlbum() {
     try {

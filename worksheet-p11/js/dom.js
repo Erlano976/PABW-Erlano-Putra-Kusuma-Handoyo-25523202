@@ -1,23 +1,24 @@
-const daftarEl = document.querySelector("#daftar-album-tbody");
-const filterEl = document.querySelector("#filter-genre");
+import { saring } from "./data.js";
+
+export const daftarEl = document.querySelector("#daftar-album-tbody");
+export const filterEl = document.querySelector("#filter-genre");
+export const formEl = document.querySelector("#form-tambah-album");
+export const aturUlangEl = document.querySelector("#atur-ulang");
+export const inputJudul = document.querySelector("#judul-album");
+export const inputBand = document.querySelector("#penyanyi-band");
+export const inputTahun = document.querySelector("#tahun-rilis");
+export const tombolSimpan = formEl.querySelector("button[type=submit]");
+
 const pesanKosongEl = document.querySelector("#pesan-kosong");
-const formEl = document.querySelector("#form-tambah-album");
 const muatEl = document.querySelector("#muat");
 
-console.log("daftarEl", daftarEl);
-console.log("filterEl", filterEl);
-console.log("pesanKosongEl", pesanKosongEl);
-console.log("formEl", formEl);
-console.log("formEl", formEl);
 
-
-function buatBarisAlbum(album) {
+function buatBarisAlbum(album, favorit) {
   const tr = document.createElement("tr");
 
   const th = document.createElement("th");
   th.scope = "row";
   th.textContent = album.judul;
-
 
   const tdBand = document.createElement("td");
   tdBand.textContent = album.band;
@@ -28,24 +29,50 @@ function buatBarisAlbum(album) {
   const tdGenre = document.createElement("td");
   tdGenre.textContent = album.genre;
 
-  tr.append(th, tdBand, tdTahun, tdGenre);
+
+
+
+
+
+
+
+
+
+  const tdFavorit = document.createElement("td");
+  const tombol = document.createElement("button");
+  tombol.type = "button";
+  tombol.className = "favorit";
+  tombol.dataset.id = album.id;
+  tombol.setAttribute("aria-label", "Tandai sebagai favorit");
+  tombol.textContent = favorit.includes(album.id) ? "★" : "☆";
+  tdFavorit.append(tombol);
+
+  tr.append(th, tdBand, tdTahun, tdGenre, tdFavorit);
   return tr;
 }
 
-export function render(daftar) {
+function tandaiTombolAktif(genreAktif) {
+  filterEl.querySelectorAll("button[data-genre]").forEach((tombol) => {
+    tombol.classList.toggle("aktif", tombol.dataset.genre === genreAktif);
+  });
+}
+
+export function render(state) {
   daftarEl.textContent = "";
   
-  if (daftar.length === 0) { 
-    pesanKosongEl.textContent = "Belum ada album.";
+  const tampil = saring(state.daftarAlbum, state.genreAktif);
+
+  if (tampil.length === 0) {
+    pesanKosongEl.textContent = "Tidak ada album yang cocok dengan filter ini.";
     pesanKosongEl.hidden = false;
-    return;
+  } else {
+    pesanKosongEl.hidden = true;
+    const fragment = document.createDocumentFragment();
+    tampil.forEach((album) => fragment.append(buatBarisAlbum(album, state.favorit)));
+    daftarEl.append(fragment);
   }
-  
-  pesanKosongEl.hidden = true;
-  
-  const fragment = document.createDocumentFragment();
-  daftar.forEach((album) => fragment.append(buatBarisAlbum(album)));
-  daftarEl.append(fragment);
+
+  tandaiTombolAktif(state.genreAktif);
 }
 
 export function aturMemuat(aktif) {
@@ -58,46 +85,17 @@ export function tampilkanGalat(pesan) {
   pesanKosongEl.hidden = false;
 }
 
-
-
-
-function tandaiTombolAktif(tombolAktif) { 
-    filterEl.querySelectorAll("button").forEach((tombol) => {
-        tombol.classList.toggle("aktif", tombol === tombolAktif);
-    });
-}
-
-export function pasangFilter(daftar) {
-  filterEl.addEventListener("click", (event) => {
-    const tombol = event.target.closest("button");
-    if (!tombol) return;
-
-    const genre = tombol.dataset.genre;
-    const terpilih = genre === "semua" ? daftar : daftar.filter((album) => album.genre === genre);
-    render(terpilih);
-    tandaiTombolAktif(tombol);
-  });
-}
-
-const inputJudul = document.querySelector("#judul-album");
-const inputBand = document.querySelector("#penyanyi-band");
-const inputTahun = document.querySelector("#tahun-rilis");
-const tombolSimpan = formEl.querySelector("button[type=submit]");
-
-function tandaiGalat(input, pesan) {
+export function tandaiGalat(input, pesan) {
   input.setAttribute("aria-invalid", "true");
   const pesanEl = input.closest(".form-kolom")?.querySelector(".pesan-galat");
   if (pesanEl) pesanEl.textContent = pesan;
 }
 
-
-function bersihkanGalat(input) {
+export function bersihkanGalat(input) {
   input.removeAttribute("aria-invalid");
 }
 
-
-
-function periksaForm() {
+export function periksaForm() {
   let sah = true;
 
   if (inputJudul.value.trim() === "") {
@@ -106,8 +104,6 @@ function periksaForm() {
   } else {
     bersihkanGalat(inputJudul);
   }
-
-
 
   if (inputBand.value.trim() === "") {
     tandaiGalat(inputBand, "Nama penyanyi/band wajib diisi.");
@@ -127,22 +123,3 @@ function periksaForm() {
   tombolSimpan.disabled = !sah;
   return sah;
 }
-
-[inputJudul, inputBand, inputTahun].forEach((input) => {
-  input.addEventListener("input", periksaForm);
-});
-
-formEl.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  if (!periksaForm()) {
-    const kolomBermasalah = [inputJudul, inputBand, inputTahun].find(
-      (input) => input.getAttribute("aria-invalid") === "true"
-    );
-    kolomBermasalah?.focus();
-    return;
-  }
-
-  formEl.reset();
-  tombolSimpan.disabled = false;
-});
