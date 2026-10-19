@@ -88,6 +88,14 @@ Alur data & Penanganan Galat
 - Empat keadaan antarmuka: memuat, berhasil, gagal, dan kosong
 
 
+## Pertemuan 11 — Membagi Satu Berkas Menjadi Lima yang Jelas Tugasnya
+- js/data.js - objek profil dan fungsi murni (buatPerkenalan, formatKeahlian, saring)
+- js/state.js - objek state tunggal, fungsi pengubah, serta simpan, muat, pulihkan, dan aturUlang
+- js/dom.js - pemilih DOM, render(state), buatKartu(proyek, favorit), aturMemuat(), dan tampilkanGalat()
+- js/events.js - pemasangan seluruh pendengar peristiwa lewat pasangPendengar()
+- js/app.js - perakit utama: mengimpor modul dan menjalankan fungsi mulai()
+
+
 ## Catatan penggunaan AI
 
 p3 - Tidak memakai AI.
@@ -95,6 +103,7 @@ p4 - Menentukan warna yang cocok atau sesuai dan membantu mengerjakan worksheet 
 kemudian saya sesuaikan lagi.
 p5 - Membantu dan memandu dalam mengerjakan lembar kerja, serta sedikit perbaikan dari worksheet sebelumnya.
 p6 - 
-p8 - Membantu dalam mengerjakan worksheet, seperti apa yang harus dicek dan bagaimana cara mengeceknya
-P9 - Membantu dalam menyusun fungsi event delegation closest "button"
-P10 - Membantu memahami alur fetch dan penanganan galat
+p8 - Membantu dalam mengerjakan worksheet, seperti apa yang harus dicek dan bagaimana cara mengeceknya.
+P9 - Membantu dalam menyusun fungsi event delegation closest "button".
+P10 - Membantu memahami alur fetch dan penanganan galat.
+P11 - Menyusun pengelolaan state terpusat agar antarmuka murni digambar dari objek state.
