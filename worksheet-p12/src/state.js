@@ -1,10 +1,7 @@
-import { render } from "./dom.js";
-
-export const state = {
-  genreAktif: "semua",
-  daftarAlbum: [],
-  favorit: []      
-};
+import { reactive } from 'vue'
+export const state = reactive({
+  genreAktif: 'semua', daftarAlbum: [], favorit: [], memuat: true, galat: ''
+})
 
 
 const KUNCI = "pabw-p11";
@@ -39,26 +36,20 @@ export function pulihkan(isi) {
 
 
 export function isiAlbum(daftar) {
-  state.daftarAlbum = daftar;
-  render(state);
+  state.daftarAlbum = daftar
 }
 
 export function pilihGenre(genre) {
-  state.genreAktif = genre;
-  simpan(state);
-  render(state);
+  state.genreAktif = genre
 }
 
 export function tambahFavorit(id) {
   if (state.favorit.includes(id)) return;
   state.favorit = [...state.favorit, id];
-  simpan(state);
-  render(state);
 }
 
 export function aturUlang() {
   localStorage.removeItem(KUNCI);
   state.genreAktif = "semua";
-  state.favorit = [];
-  render(state);
+  state.favorit = []
 }
