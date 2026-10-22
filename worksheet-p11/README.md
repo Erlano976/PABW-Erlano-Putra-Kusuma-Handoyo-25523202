@@ -96,6 +96,23 @@ Alur data & Penanganan Galat
 - js/app.js - perakit utama: mengimpor modul dan menjalankan fungsi mulai()
 
 
+## Pertemuan 12 — Dari Berkas Lepas ke Proyek Komponen yang Dibangun
+- Versi perkakas: Node.js v24.22.0, npm 11.19.1
+- worksheet-p12 - proyek Vue + Vite yang dibuat dari folder kosong dengan npm create vite
+- src/main.js - mengimpor enam berkas CSS
+- src/App.vue - komponen induk memuat empat komponen, menjalankan onMounted dan watch
+- src/components/KepalaProfil.vue - header satu-satunya yang menerima props
+- src/components/TombolFilter.vue - tombol genre dan tombol atur ulang
+- src/components/DaftarProyek.vue - tabel album, tombol favorit, serta keadaan memuat, gagal, dan kosong
+- src/components/FormKontak.vue - formulir tambah album dengan validasi P9
+- src/state.js - state memakai reactive() tidak ada lagi render(state)
+- src/api.js dan src/data.js - dipindahkan dari P10 dan P11
+
+Alur data & Build
+- onMounted memulihkan simpanan dari localStorage lalu mengambil data lewat api.js, watch menyimpan setiap state berubah
+- npm run build menghasilkan dist/, npm run preview menjalankannya
+- .gitignore memuat node_modules/ dan dist/, package-lock.json ikut di-commit
+
 ## Catatan penggunaan AI
 
 p3 - Tidak memakai AI.
@@ -107,3 +124,4 @@ p8 - Membantu dalam mengerjakan worksheet, seperti apa yang harus dicek dan baga
 P9 - Membantu dalam menyusun fungsi event delegation closest "button".
 P10 - Membantu memahami alur fetch dan penanganan galat.
 P11 - Menyusun pengelolaan state terpusat agar antarmuka murni digambar dari objek state.
+P12 - 
