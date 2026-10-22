@@ -1,0 +1,33 @@
+.sisi,
+.utama { min-width: 0; }
+
+.isi {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "sisi"
+    "utama";
+}
+
+
+
+.galeri { grid-template-columns: 1fr; }
+
+.sorotan { grid-column: auto;}
+
+.table-wrap { overflow-x: auto; min-width: 0; }
+
+
+
+/* tablet: galeri dua kolom */
+@media (min-width: 48rem) {
+    .galeri { grid-template-columns: repeat(2, 1fr); }
+    .sorotan { grid-column: span 2; }
+}
+
+/* desktop: sidebar bersanding dengan konten */
+@media (min-width: 60rem) {
+    .isi { grid-template-columns: 16rem 1fr; grid-template-areas: "sisi utama"; }
+    .galeri { grid-template-columns: repeat(3, 1fr); }
+}
+
+
