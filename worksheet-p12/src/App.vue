@@ -1,9 +1,25 @@
 <script setup>
 import { profil } from './data.js'
+import { onMounted, watch } from 'vue'
+import { state, simpan, muat, pulihkan, isiAlbum } from './state.js'
+import { ambilAlbum } from './api.js'
 import KepalaProfil from './components/KepalaProfil.vue'
 import TombolFilter from './components/TombolFilter.vue'
 import DaftarProyek from './components/DaftarProyek.vue'
 import FormKontak from './components/FormKontak.vue'
+
+onMounted(async () => {
+  pulihkan(muat()) // pilihan terakhir dari localStorage
+  try {
+    isiAlbum(await ambilAlbum()) // data album dari api.js
+  } catch (galat) {
+    state.galat = 'Data gagal dimuat. Periksa koneksi, lalu muat ulang.'
+  } finally {
+    state.memuat = false
+  }
+})
+
+watch(state, (nilai) => simpan(nilai), { deep: true })
 </script>
 
 <template>
